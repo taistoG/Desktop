@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yhteystiedot — LM-Meal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header role="banner">
+    <nav aria-label="Päänavigaatio">
+      <a href="index.html">Etusivu</a> |
+      <a href="restaurants.html">Ravintolat</a> |
+      <a href="bookings.html">Varaukset</a> |
+      <a href="contact.html" aria-current="page">Yhteystiedot</a>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <h1>Yhteystiedot</h1>
+
+    <section aria-labelledby="yritys-info">
+      <h2 id="yritys-info">Yrityksen tiedot</h2>
+      <p>LM-Meal Oy</p>
+      <p>Y-tunnus: 1234567-8</p>
+      <p>Osoite: Esimerkkikatu 10, 00100 Helsinki</p>
+      <p>Puhelin: <a href="tel:+358401234567">+358 40 123 4567</a></p>
+      <p>Sähköposti: <a href="mailto:tuki@lm-meal.fi">tuki@lm-meal.fi</a></p>
+    </section>
+
+    <section aria-labelledby="aukiolo">
+      <h2 id="aukiolo">Asiakaspalvelu</h2>
+      <p>Chat-asiakaspalvelu: saatavilla 24/7 sivuston chat-ikkunassa.</p>
+      <p>Puhelintuki arkisin 9:00–17:00.</p>
+    </section>
+
+    <section aria-labelledby="kartta">
+      <h2 id="kartta">Sijainti</h2>
+      <p>Toimistomme sijaitsee kätevästi Helsingin keskustassa. Alla on paikkamerkki (upota halutessasi Google Maps -iframe tai vastaava):</p>
+      <div role="img" aria-label="Karttapohjainen sijainti" style="max-width:600px;">
+        <!-- Placeholder image; replace with map iframe if tarvitaan -->
+        <img src="https://via.placeholder.com/600x300?text=Kartta+placeholder" alt="Kartta: LM-Meal, Esimerkkikatu 10, Helsinki" style="max-width:100%;height:auto;border-radius:8px;">
+      </div>
+    </section>
+
+    <section aria-labelledby="yhteydenotto">
+      <h2 id="yhteydenotto">Ota yhteyttä</h2>
+      <p>Voit lähettää meille viestin alla olevalla lomakkeella — vastaamme yleensä 1–2 arkipäivän kuluessa.</p>
+
+      <form id="contactForm" action="#" method="post" novalidate>
+        <div>
+          <label for="name">Nimesi</label><br>
+          <input type="text" id="name" name="name" required aria-required="true">
+        </div>
+
+        <div>
+          <label for="email">Sähköposti</label><br>
+          <input type="email" id="email" name="email" required aria-required="true">
+        </div>
+
+        <div>
+          <label for="phone">Puhelin (valinnainen)</label><br>
+          <input type="tel" id="phone" name="phone">
+        </div>
+
+        <div>
+          <label for="message">Viesti</label><br>
+          <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+        </div>
+
+        <div>
+          <button type="submit">Lähetä viesti</button>
+        </div>
+
+        <p id="formNote" style="font-size:0.9rem;color:#555;margin-top:8px;">
+          Emme luovuta yhteystietojasi kolmansille osapuolille.
+        </p>
+      </form>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p>&copy; <span id="year"></span> LM-Meal Oy — Kaikki oikeudet pidätetään</p>
+  </footer>
+
+  <script>
+    // Pieni lomaketoteutus-demo (vain käyttäjäkokemus, ei oikeaa palvelinlähetystä)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      // simuloidaan lähetys
+      alert('Kiitos viestistä! Otamme yhteyttä mahdollisimman pian.');
+      this.reset();
+    });
+
+    // Aseta nykyinen vuosi footeriin
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
