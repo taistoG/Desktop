@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LM-Meal — Table free</title>
+  <meta name="description" content="LM-Meal mockup — realtime restaurant availability"/>
+  <style>
+    :root{
+      --burgundy:#800020;
+      --burgundy-strong:#620018;
+      --lime:#C7EA46;
+      --bg:#fbf8f6;
+      --muted:#6b6b6b;
+      --card-radius:12px;
+      --max-width:1100px;
+      --gap:18px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg, var(--burgundy) 0, var(--burgundy) 0 6rem, transparent 6rem), var(--bg); color:#222}
+
+    /* Top navigation / header */
+    .container{max-width:var(--max-width);margin:0 auto;padding:0 18px}
+    header.topbar{background:transparent;padding:18px 0}
+    .nav{display:flex;align-items:center;gap:28px}
+    .logo{display:flex;align-items:center;gap:12px;color:var(--lime);font-weight:700;font-size:22px}
+    .logo .icon{width:40px;height:40px;border-radius:50%;background:var(--lime);display:inline-grid;place-items:center;color:var(--burgundy);font-weight:800}
+    nav.menu{margin-left:auto;display:flex;gap:18px;align-items:center}
+    nav.menu a{color:white;text-decoration:none;font-weight:600;padding:6px 8px;border-radius:8px}
+    nav.menu a:hover{background:rgba(255,255,255,0.06)}
+
+    /* Hero */
+    .hero{background:var(--lime);border-radius:12px;padding:36px;margin-top:12px;color:var(--burgundy);display:flex;align-items:center;gap:20px}
+    .hero .brand{font-size:48px;font-weight:800}
+    .hero .tag{font-size:20px;margin-top:6px;color:var(--burgundy)}
+
+    /* Main layout */
+    main{display:flex;gap:var(--gap);margin-top:26px}
+    .sidebar{width:280px;background:rgba(128,0,32,0.08);padding:18px;border-radius:12px;height:fit-content}
+    .sidebar h4{margin:0 0 12px 0;color:var(--burgundy)}
+    .field{margin-bottom:14px}
+    .input, .select{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:white}
+    .filters .section-title{color:var(--muted);font-size:13px;margin:6px 0}
+
+    .content{flex:1}
+    .content h2{color:var(--burgundy);margin:0 0 12px 0}
+
+    /* Restaurant cards */
+    .cards{display:grid;grid-template-columns:1fr;gap:18px}
+    .card{display:flex;gap:12px;background:white;padding:12px;border-radius:10px;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+    .card img{width:120px;height:80px;object-fit:cover;border-radius:8px}
+    .card .meta{flex:1}
+    .card .title{font-size:20px;color:var(--burgundy);font-weight:700;margin-bottom:6px}
+    .tag-available{color:var(--lime);font-weight:700}
+    .card .cta{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+    .btn{background:var(--lime);border:none;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;color:var(--burgundy)}
+    .btn.secondary{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--burgundy)}
+
+    /* Footer / language */
+    footer.page-footer{margin-top:30px;padding:8px 12px;border-radius:8px;display:flex;justify-content:flex-end;gap:8px}
+    .lang{padding:6px 8px;border-radius:8px;background:rgba(0,0,0,0.04);cursor:pointer}
+
+    /* Responsive */
+    @media (max-width:900px){
+      main{flex-direction:column}
+      .sidebar{width:100%}
+      .hero{flex-direction:column;align-items:flex-start}
+      .logo{font-size:18px}
+      .hero .brand{font-size:36px}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="nav">
+        <div class="logo" role="img" aria-label="LM-Meal logo">
+          <div class="icon">Q</div>
+          <div>LM-Meal</div>
+        </div>
+        <nav class="menu" aria-label="Päänavigaatio">
+        <a href="https://taistog.github.io/Desktop/index.html">Etusivu</a>
+          <a href="https://taistog.github.io/Desktop/restaurants.html">Ravintolat</a>
+          <a href="https://taistog.github.io/Desktop/bookings.html">Varaukset</a>
+            <a href="https://taistog.github.io/Desktop/contact.html">Yhteystiedot</a>
+        </nav>
+      </div>
+
+      <section id="hero" class="hero" aria-hidden="false">
+        <div>
+          <div class="brand">LM-Meal</div>
+          <div class="tag">Table free – we know it!</div>
+        </div>
+        <!-- decorative plate image could go here -->
+        <div style="margin-left:auto;opacity:0.95">
+          <svg width="120" height="120" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <circle cx="12" cy="12" r="10" stroke="var(--burgundy)" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="12" r="4" fill="var(--burgundy)"/>
+            <rect x="17" y="6" width="2" height="8" rx="1" fill="var(--burgundy)" transform="rotate(20 17 6)"/>
+          </svg>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <aside class="sidebar" aria-label="Hakutyökalut ja suodattimet">
+        <h4>Haku</h4>
+        <div class="field"><input class="input" id="search" placeholder="Etsi ravintolaa tai ruokaa"/></div>
+        <div class="filters">
+          <div class="section-title">Keittiö</div>
+          <select id="cuisine" class="select">
+            <option value="">Kaikki</option>
+            <option>Suomalainen</option>
+            <option>Italialainen</option>
+            <option>Japani</option>
+          </select>
+          <div class="section-title" style="margin-top:12px">Hinta</div>
+          <select id="price" class="select">
+            <option value="">Kaikki</option>
+            <option value="1">€</option>
+            <option value="2">€€</option>
+            <option value="3">€€€</option>
+          </select>
+          <div style="margin-top:14px">
+            <button class="btn secondary" id="clearFilters">Tyhjennä suodattimet</button>
+          </div>
+        </div>
+      </aside>
+
+      <section class="content" aria-live="polite">
+        <h2 id="listTitle">Tähän ravintolat</h2>
+
+        Ravintola 1
+        Ravintola 2
+        Ravintola 3 jne
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <div class="lang" id="lang-fi">FI</div>
+      <div class="lang" id="lang-en">EN</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Simple interactions: filtering, language toggle, booking stub
+    const cards = Array.from(document.querySelectorAll('.card'));
+    const search = document.getElementById('search');
+    const cuisine = document.getElementById('cuisine');
+    const price = document.getElementById('price');
+    const clearFilters = document.getElementById('clearFilters');
+
+    function filterCards(){
+      const s = search.value.trim().toLowerCase();
+      const c = cuisine.value.toLowerCase();
+      const p = price.value;
+
+      cards.forEach(card =>{
+        const title = card.querySelector('.title').textContent.toLowerCase();
+        const cardCuisine = card.dataset.cuisine || '';
+        const cardPrice = card.dataset.price || '';
+        const match = (s === '' || title.includes(s)) && (c === '' || cardCuisine.includes(c)) && (p === '' || cardPrice === p);
+        card.style.display = match? 'flex': 'none';
+      });
+    }
+
+    search.addEventListener('input', filterCards);
+    cuisine.addEventListener('change', filterCards);
+    price.addEventListener('change', filterCards);
+    clearFilters.addEventListener('click', ()=>{search.value='';cuisine.value='';price.value='';filterCards();});
+
+    function book(name){
+      // Lightweight booking stub — in real app this would open a booking modal / API call
+      const confirmed = confirm('Varaa pöytä: ' + name + '?');
+      if(confirmed) alert('Varaus lähetetty: ' + name);
+    }
+
+    // navigation anchors behaviour (smooth scroll to sections)
+    document.querySelectorAll('[data-nav]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        e.preventDefault();
+        const href = a.getAttribute('href').slice(1);
+        if(href === 'home') window.scrollTo({top:0, behavior:'smooth'});
+        if(href === 'restaurants') document.querySelector('#listTitle').scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+    // Language toggle (demo only)
+    document.getElementById('lang-fi').addEventListener('click', ()=>setLang('fi'));
+    document.getElementById('lang-en').addEventListener('click', ()=>setLang('en'));
+
+    function setLang(l){
+      // tiny demo translations — extend as needed
+      const translations = {
+        fi: {title:'Ravintolat', book:'Varaa', tag:'Table free – we know it!'},
+        en: {title:'Restaurants', book:'Book', tag:'Table free – we know it!'}
+      };
+      const t = translations[l] || translations.fi;
+      document.getElementById('listTitle').textContent = t.title;
+      document.querySelectorAll('.btn').forEach(b=>{ if(!b.classList.contains('secondary')) b.textContent = t.book });
+    }
+
+  </script>
+</body>
+</html>
