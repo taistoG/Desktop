@@ -132,43 +132,93 @@
 
       <section class="content" aria-live="polite">
         <h2 id="listTitle">Yhteystiedot</h2>
-        <div class="cards" id="cards">
+      
+  <title>Yhteystiedot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+    }
 
-          <!-- Example card 1 -->
-          <article class="card" data-cuisine="suomalainen" data-price="2">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=60" alt="Liharuoka annos"/>
-            <div class="meta">
-              <div class="title">Ravintola Satuma</div>
-              <div class="sub">Saatavilla <span class="tag-available">• heti</span></div>
-            </div>
-            <div class="cta">
-              <button class="btn" onclick="book('Ravintola Satuma')">Varaa</button>
-            </div>
-          </article>
+    h1 {
+      color: #333;
+    }
 
-          <!-- Example card 2 -->
-          <article class="card" data-cuisine="italialainen" data-price="2">
-            <img src="https://www.jepo.fi/wp-content/uploads/2024/03/texmex-vuoka-annoskuva.jpeg" alt="Pihvi annos"/>
-            <div class="meta">
-              <div class="title">Ravintola Ravato</div>
-              <div class="sub">Saatavilla <span class="tag-available">• 10 min</span></div>
-            </div>
-            <div class="cta">
-              <button class="btn" onclick="book('Ravintola Ravato')">Varaa</button>
-            </div>
-          </article>
+    .contact-info {
+      margin-bottom: 30px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-          <!-- Example card 3 -->
-          <article class="card" data-cuisine="japani" data-price="3">
-            <img src="https://blog.metrotukku.fi/hs-fs/hubfs/W%20Metro/W-Metro-grillatut-kanaviipaleet-salaatissa-annoskuva-680x394.jpg?width=1360&height=788&name=W-Metro-grillatut-kanaviipaleet-salaatissa-annoskuva-680x394.jpg" alt="Kasvislautanen"/>
-            <div class="meta">
-              <div class="title">Ravintola Peruna</div>
-              <div class="sub">Saatavilla <span class="tag-available">• 20 min</span></div>
-            </div>
-            <div class="cta">
-              <button class="btn" onclick="book('Ravintola Peruna')">Varaa</button>
-            </div>
-          </article>
+    .contact-info p {
+      margin: 10px 0;
+    }
+
+    form {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+<body>
+
+  <h1>Ota yhteyttä</h1>
+
+  <div class="contact-info">
+    <p><strong>Nimi:</strong> Yritys Oy</p>
+    <p><strong>Sähköposti:</strong> <a href="mailto:info@yritys.fi">info@yritys.fi</a></p>
+    <p><strong>Puhelin:</strong> +358 40 123 4567</p>
+    <p><strong>Osoite:</strong> Esimerkkikatu 1, 00100 Helsinki</p>
+  </div>
+
+  <form action="#" method="post">
+    <label for="name">Nimi:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Sähköposti:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="message">Viesti:</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Lähetä</button>
+  </form>
+
+    
 
         </div>
       </section>
